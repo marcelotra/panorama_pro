@@ -1,0 +1,25 @@
+// Este arquivo define a estrutura do seu banco de dados
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Tabela para testarmos se o sistema grava dados corretamente
+model SystemLog {
+  id        Int      @id @default(autoincrement())
+  message   String
+  status    String
+  timestamp DateTime @default(now())
+}
+
+// Tabela de usuários para o seu sistema futuro
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  createdAt DateTime @default(now())
+}
